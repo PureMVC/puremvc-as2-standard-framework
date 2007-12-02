@@ -1,0 +1,35 @@
+--------------------------------------------------------------------
+Writing PureMVC-based Applications in AS2
+--------------------------------------------------------------------
+
+The simple language caveats:
+
+AS3					AS2
+-----------------	-----------------
+void				Void
+const				var
+addEventListener	addListener
+a = b as MyClass	a = MyClass(b)
+protected			public
+override			n/a
+
+
+FlashLite Implementation notes:
+-------------------------------
+
+* Don't use fscommand2 in the constructor of a Mediator. 
+It will work in the phone but it will transform the object in a very 
+strange and unregisterable way inside the Flash 9 player. 
+
+* Events are not the same as in Flash 9. flash.events.Event does not 
+exist. Events are far more rudimentary. 
+
+Because the way they are handled is by setting a function onto a 
+MovieClip, which will execute in the context of that MovieClip, 
+it is difficult for a MovieClip to communicate out-bound to its 
+Mediator. 
+
+A Delegate class similar to mx.controls.Delegate is used to add 
+the Mediator's methods as the listener methods on a stewarded 
+MovieClip, and have those methods called from the context of the
+Mediator and not the clip. Arguments can be passed. 
