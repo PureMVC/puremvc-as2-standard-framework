@@ -1,7 +1,7 @@
 ﻿/*
- PureMVC AS2 Port originally by Pedr Browne 
+ PureMVC AS2 Port by Pedr Browne <pedr.browne@puremvc.org>
  PureMVC - Copyright(c) 2006, 2007 Futurescale, Inc., Some rights reserved.
- Your reuse is governed by the Creative Commons Attribution 3.0 United States License
+ Your reuse is governed by the Creative Commons Attribution 3.0 License
 */
 import org.puremvc.as2.interfaces.*;
 import org.puremvc.as2.patterns.observer.*;
