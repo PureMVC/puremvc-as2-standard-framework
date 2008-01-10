@@ -1,9 +1,11 @@
-﻿/*
+/*
  PureMVC AS2 Port by Pedr Browne <pedr.browne@puremvc.org>
  PureMVC - Copyright(c) 2006, 2007 Futurescale, Inc., Some rights reserved.
  Your reuse is governed by the Creative Commons Attribution 3.0 License
 */
+
 import org.puremvc.as2.interfaces.*;
+
 /**
  * A Singleton <code>IModel</code> implementation.
  * 
@@ -32,91 +34,91 @@ import org.puremvc.as2.interfaces.*;
  */
 class org.puremvc.as2.core.model.Model implements IModel
 {
-		/**
-		 * Constructor. 
-		 * 
-		 * <P>
-		 * This <code>IModel</code> implementation is a Singleton, 
-		 * so you should not call the constructor 
-		 * directly, but instead call the static Singleton 
-		 * Factory method <code>Model.getInstance()</code>
-		 * 
-		 * @throws Error Error if Singleton instance has already been constructed
-		 * 
-		 */
-		public function Model( )
-		{
-			if (instance != null) throw Error(SINGLETON_MSG);
-			instance = this;
-			proxyMap = new Array();	
-			initializeModel();	
-		}
-		
-		/**
-		 * Initialize the Singleton <code>Model</code> instance.
-		 * 
-		 * <P>
-		 * Called automatically by the constructor, this
-		 * is your opportunity to initialize the Singleton
-		 * instance in your subclass without overriding the
-		 * constructor.</P>
-		 * 
-		 * @return Void
-		 */
-		 
-		private function initializeModel(  ) : Void
-		{
-		}
-				
-		/**
-		 * <code>Model</code> Singleton Factory method.
-		 * 
-		 * @return the Singleton instance
-		 */
-		public static function getInstance() : IModel 
-		{
-			if (instance == null) instance = new Model( );
-			return instance;
-		}
+	
+	/**
+	 * Constructor. 
+	 * 
+	 * <P>
+	 * This <code>IModel</code> implementation is a Singleton, 
+	 * so you should not call the constructor 
+	 * directly, but instead call the static Singleton 
+	 * Factory method <code>Model.getInstance()</code>
+	 * 
+	 * @throws Error Error if Singleton instance has already been constructed
+	 * 
+	 */
+	public function Model( )
+	{
+		if (instance != null) throw Error(SINGLETON_MSG);
+		instance = this;
+		proxyMap = new Array();	
+		initializeModel();	
+	}
+	
+	/**
+	 * Initialize the Singleton <code>Model</code> instance.
+	 * 
+	 * <P>
+	 * Called automatically by the constructor, this
+	 * is your opportunity to initialize the Singleton
+	 * instance in your subclass without overriding the
+	 * constructor.</P>
+	 * 
+	 * @return Void
+	 */
+	private function initializeModel(  ) : Void
+	{
+	}
+			
+	/**
+	 * <code>Model</code> Singleton Factory method.
+	 * 
+	 * @return the Singleton instance
+	 */
+	public static function getInstance() : IModel 
+	{
+		if (instance == null) instance = new Model( );
+		return instance;
+	}
 
-		/**
-		 * Register an <code>IProxy</code> with the <code>Model</code>.
-		 * 
-		 * @param proxy an <code>IProxy</code> to be held by the <code>Model</code>.
-		 */
-		public function registerProxy( proxy:IProxy ) : Void
-		{
-			proxyMap[ proxy.getProxyName() ] = proxy;
-		}
+	/**
+	 * Register an <code>IProxy</code> with the <code>Model</code>.
+	 * 
+	 * @param proxy an <code>IProxy</code> to be held by the <code>Model</code>.
+	 */
+	public function registerProxy( proxy:IProxy ) : Void
+	{
+		proxyMap[ proxy.getProxyName() ] = proxy;
+	}
 
-		/**
-		 * Retrieve an <code>IProxy</code> from the <code>Model</code>.
-		 * 
-		 * @param proxyName
-		 * @return the <code>IProxy</code> instance previously registered with the given <code>proxyName</code>.
-		 */
-		public function retrieveProxy( proxyName:String ) : IProxy
-		{
-			return proxyMap[ proxyName ];
-		}
+	/**
+	 * Retrieve an <code>IProxy</code> from the <code>Model</code>.
+	 * 
+	 * @param proxyName
+	 * @return the <code>IProxy</code> instance previously registered with the given <code>proxyName</code>.
+	 */
+	public function retrieveProxy( proxyName:String ) : IProxy
+	{
+		return proxyMap[ proxyName ];
+	}
 
-		/**
-		 * Remove an <code>IProxy</code> from the <code>Model</code>.
-		 * 
-		 * @param proxyName name of the <code>IProxy</code> instance to be removed.
-		 */
-		public function removeProxy( proxyName:String ) : Void
-		{
-			proxyMap[ proxyName ] = null;
-		}
+	/**
+	 * Remove an <code>IProxy</code> from the <code>Model</code>.
+	 * 
+	 * @param proxyName name of the <code>IProxy</code> instance to be removed.
+	 */
+	public function removeProxy( proxyName:String ) : Void
+	{
+		proxyMap[ proxyName ] = null;
+	}
 
-		// Mapping of proxyNames to IProxy instances
-		private var proxyMap : Array;
+	// Mapping of proxyNames to IProxy instances
+	private var proxyMap : Array;
 
-		// Singleton instance
-		private static var instance : IModel;
-		
-		// Message Constants
-		private var SINGLETON_MSG	: String = "Model Singleton already constructed!";
+	// Singleton instance
+	private static var instance : IModel;
+	
+	// Message Constants
+	private var SINGLETON_MSG	: String = "Model Singleton already constructed!";
 
 }
