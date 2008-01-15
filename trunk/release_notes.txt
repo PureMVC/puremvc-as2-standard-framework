@@ -1,0 +1,75 @@
+--------------------------------------------------------------------
+Writing PureMVC-based Applications in AS2
+--------------------------------------------------------------------
+
+The simple language caveats:
+
+AS3					AS2
+-----------------	-----------------
+void				Void
+const				var
+addEventListener	addListener
+a = b as MyClass	a = MyClass(b)
+protected			public
+override			n/a
+
+
+FlashLite Implementation notes:
+-------------------------------
+
+* Don't use fscommand2 in the constructor of a Mediator. 
+It will work in the phone but it will transform the object in a very 
+strange and unregisterable way inside the Flash 9 player. 
+
+* Events are not the same as in Flash 9. flash.events.Event does not 
+exist. Events are far more rudimentary. 
+
+Because the way they are handled is by setting a function onto a 
+MovieClip, which will execute in the context of that MovieClip, 
+it is difficult for a MovieClip to communicate out-bound to its 
+Mediator. 
+
+A Delegate class similar to mx.controls.Delegate is used to add 
+the Mediator's methods as the listener methods on a stewarded 
+MovieClip, and have those methods called from the context of the
+Mediator and not the clip. Arguments can be passed. 
+
+AS3 version vs AS2 version notes:
+-------------------------------
+
+Aside from obvious language differences, the only major difference between 
+the two versions involves Commands. AS3 introduced the ability to 
+create aclass from a class reference (in the form of a String) using:
+
+eg. 
+
+var myClassref:String = "com.mysite.myclasses.MyClass"
+
+var myInstance : IMyClass = new myClassRef();
+
+This functionality does not exist in AS2, so we pass-in and re-use an 
+instance of an ICommand instead of a class reference.
+This Means that when you register a command, you use:
+
+eg.
+
+registerCommand(STARTUP, new AppStartupCommand());
+
+The resultant functionality is essentially the same, with one important
+stipulation. Commands must be stateless as they will potentially be
+reused.
+
+It is also worth noting that you cannot cast to Arrays in AS2. This can
+cause problems in Proxies when using a getter to cast 'data' to its
+correct Datatype. One solution is to use:
+
+eg.
+
+var myArray:Array = {a:data}.a
+
+This will allow you to return myArray out of your getter without throwing
+an error by adding then accessing data from a temporary object, negating
+type checking.
+
+
+
