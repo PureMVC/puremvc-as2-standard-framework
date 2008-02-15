@@ -4,14 +4,14 @@ Writing PureMVC-based Applications in AS2
 
 The simple language caveats:
 
-AS3					AS2
+AS3		AS2
 -----------------	-----------------
-void				Void
-const				var
+void		Void
+const		var
 addEventListener	addListener
 a = b as MyClass	a = MyClass(b)
-protected			public
-override			n/a
+protected		public
+override		n/a
 
 
 FlashLite Implementation notes:
@@ -37,6 +37,8 @@ Mediator and not the clip. Arguments can be passed.
 AS3 version vs AS2 version notes:
 -------------------------------
 
+COMMANDS 
+
 Aside from obvious language differences, the only major difference between 
 the two versions involves Commands. AS3 introduced the ability to 
 create aclass from a class reference (in the form of a String) using:
@@ -59,6 +61,8 @@ The resultant functionality is essentially the same, with one important
 stipulation. Commands must be stateless as they will potentially be
 reused.
 
+ARRAYS
+
 It is also worth noting that you cannot cast to Arrays in AS2. This can
 cause problems in Proxies when using a getter to cast 'data' to its
 correct Datatype. One solution is to use:
@@ -71,5 +75,17 @@ This will allow you to return myArray out of your getter without throwing
 an error by adding then accessing data from a temporary object, negating
 type checking.
 
+INTERFACES
 
+In AS3 interfaces are inherited, but in AS2, they are not.
 
+In AS3, an interface is inherited by subclasses. If a superclass implements 
+an interface, classes that subclass it will also implement that interface 
+without having to declare the fact explicitly and can be treated as such. 
+
+In AS2 however, subclasses need to explicitly implement an interface if they
+want to be treated as such, even if their superclass implements it already.
+
+This effects any of your subclasses of Facade, Proxy, Command or Mediator,
+and you must ensure they explicitly implement their respective interfaces to
+ensure they can be used in the framework
