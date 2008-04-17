@@ -39,27 +39,10 @@ AS3 version vs AS2 version notes:
 
 COMMANDS 
 
-Aside from obvious language differences, the only major difference between 
-the two versions involves Commands. AS3 introduced the ability to 
-create aclass from a class reference (in the form of a String) using:
+As of revision 2.0.3, you can now pass Class refs into registerCommand 
+as you can in the AS3 version (Thanks to James Tann). This will break 
+backwards compatibility.
 
-eg. 
-
-var myClassref:String = "com.mysite.myclasses.MyClass"
-
-var myInstance : IMyClass = new myClassRef();
-
-This functionality does not exist in AS2, so we pass-in and re-use an 
-instance of an ICommand instead of a class reference.
-This Means that when you register a command, you use:
-
-eg.
-
-registerCommand(STARTUP, new AppStartupCommand());
-
-The resultant functionality is essentially the same, with one important
-stipulation. Commands must be stateless as they will potentially be
-reused.
 
 ARRAYS
 
