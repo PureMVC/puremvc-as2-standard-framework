@@ -131,7 +131,7 @@ class org.puremvc.as2.core.Controller implements IController
      * @param command the <code>ICommand</code>
      */
     public function registerCommand( notificationName: String, commandClassRef: Function): Void {
-        if(commandMap[ notificationName ] == undefined) {
+        if(commandMap[ notificationName ] == undefined || commandMap[ notificationName ] == null) {
             view.registerObserver(notificationName, new Observer(executeCommand, this));
         }
         commandMap[ notificationName ] = commandClassRef;
