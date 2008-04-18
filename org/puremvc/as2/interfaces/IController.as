@@ -35,11 +35,10 @@ interface org.puremvc.as2.interfaces.IController
 	 * for a particular <code>INotification</code>.
 	 * 
 	 * @param notificationName the name of the <code>INotification</code>
-	 * @param command an Instance of an <code>ICommand</code>
+	 * @param commandClassRef the Class of the <code>ICommand</code>
 	 *
-	 * AS2 Note: Unlike the AS3 version, we are passing in an instance of an ICommand rather than a class ref.
 	 */
-	function registerCommand( notificationName:String, command:ICommand ) : Void;
+	function registerCommand( notificationName:String, commandClassRef:Function ) : Void;
 	
 	/**
 	 * Execute the <code>ICommand</code> previously registered as the
