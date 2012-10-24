@@ -1,24 +1,23 @@
-PureMVC Port to AS2 by Pedr Browne
-PureMVC - Copyright(c) 2007-2008 Futurescale, Inc., Some rights reserved.
+PureMVC Port to AS2
 --------------------------------------------------------------------------
 Release Date: 04/17/08
     Platform: ActionScript 2  
      Version: 1 
     Revision: 0
       Author: Pedr Browne <pedr.browne@puremvc.org>
-     License: Creative Commons Attribution 3.0 United States License
 --------------------------------------------------------------------------
-1.0 - Updated by Pedr - Equivalent with AS3 2.0.3. 
-			IMPORTANT - There has been a major change specific to this port involving 
-			Commands. You now pass class references into registerCommand() instead of
-			instances. (Thanks to James Tann). This will break previous implememtations
-			but brings this port almost completely into line with the AS3 version - all
-			other differences are small and mainly internal.
-			As with AS3, notifyObservers() is back on IFacade. The following internal 
-			chnages have also been made  :
+1.0 - Updated by Pedr 
+    - Equivalent with AS3 2.0.3. 
+      IMPORTANT - There has been a major change specific to this port involving 
+      Commands. You now pass class references into registerCommand() instead of
+      instances. (Thanks to James Tann). This will break previous implememtations
+      but brings this port almost completely into line with the AS3 version - all
+      other differences are small and mainly internal.
+      As with AS3, notifyObservers() is back on IFacade. The following internal 
+      chnages have also been made  :
 
-			From As3 2.0.2 version notes :
-			Refactored View.removeMediator method, moving the logic for removing
+      From As3 2.0.2 version notes :
+      Refactored View.removeMediator method, moving the logic for removing
       an observer into a removeObserver method (also on IView), which is now 
       called by the Controller.removeCommand method as well as the
       View.removeMediator method. This fixes the issue described here:
